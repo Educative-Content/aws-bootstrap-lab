@@ -17,7 +17,7 @@ Parameters:
     Description: 'The source GitHub repo name (without the username).'
   GitHubBranch:
     Type: String
-    Default: master
+    Default: main
     Description: 'The source GitHub branch.'
   GitHubPersonalAccessToken:
     Type: String
@@ -89,7 +89,9 @@ Resources:
               - codebuild.amazonaws.com
           Action: sts:AssumeRole
       ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/PowerUserAccess
+        - arn:aws:iam::aws:policy/AWSCodePipeline_FullAccess
+        - arn:aws:iam::aws:policy/AWSCodeBuildDeveloperAccess
+        - arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole
 
   BuildProject:
     Type: AWS::CodeBuild::Project
